@@ -1,0 +1,1556 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>キセキ PhotoWorks ～出張撮影サービス～</title>
+  <meta name="description" content="兵庫県北播磨エリアを中心に、家族・キッズ・ニューボーン・マタニティなど人生の大切な瞬間を出張撮影。看護師資格を持つカメラマンが安心の撮影体験をお届けします。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <style>
+    /* ===== Reset & Base ===== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 300;
+      color: #4a4a4a;
+      background: #fff;
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* ===== CSS Variables ===== */
+    :root {
+      --pink: #e8a0b4;
+      --pink-light: #f5d5de;
+      --pink-pale: #fdf2f5;
+      --pink-dark: #d4869c;
+      --gold: #c9a96e;
+      --gold-light: #f0e6d3;
+      --text: #4a4a4a;
+      --text-light: #8a8a8a;
+      --white: #ffffff;
+      --bg-cream: #fefcfa;
+      --shadow: 0 2px 20px rgba(0,0,0,0.06);
+      --shadow-hover: 0 8px 30px rgba(0,0,0,0.1);
+      --radius: 12px;
+      --transition: all 0.3s ease;
+    }
+
+    /* ===== Header ===== */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(232,160,180,0.15);
+      transition: var(--transition);
+    }
+    .header.scrolled {
+      box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+    }
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+    .logo-main {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: var(--pink-dark);
+      letter-spacing: 2px;
+    }
+    .logo-sub {
+      font-size: 0.65rem;
+      color: var(--text-light);
+      letter-spacing: 1px;
+    }
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .btn-reserve {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 24px;
+      background: var(--pink);
+      color: var(--white);
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+    }
+    .btn-reserve:hover {
+      background: var(--pink-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 15px rgba(232,160,180,0.4);
+    }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      z-index: 1001;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--text);
+      transition: var(--transition);
+      border-radius: 2px;
+    }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    .nav-desktop {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+    .nav-desktop a {
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: var(--text);
+      transition: var(--transition);
+      position: relative;
+    }
+    .nav-desktop a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1.5px;
+      background: var(--pink);
+      transition: width 0.3s ease;
+    }
+    .nav-desktop a:hover::after { width: 100%; }
+    .nav-desktop a:hover { color: var(--pink-dark); }
+
+    /* Mobile nav */
+    .nav-mobile {
+      display: none;
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 280px;
+      height: 100vh;
+      background: var(--white);
+      padding: 100px 32px 40px;
+      transition: right 0.4s ease;
+      box-shadow: -4px 0 20px rgba(0,0,0,0.1);
+      z-index: 999;
+    }
+    .nav-mobile.open { right: 0; }
+    .nav-mobile a {
+      display: block;
+      padding: 16px 0;
+      font-size: 0.95rem;
+      border-bottom: 1px solid var(--pink-light);
+      transition: var(--transition);
+    }
+    .nav-mobile a:hover { color: var(--pink-dark); padding-left: 8px; }
+    .nav-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.3);
+      z-index: 998;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .nav-overlay.show { display: block; opacity: 1; }
+
+    /* ===== Hero ===== */
+    .hero {
+      margin-top: 72px;
+      position: relative;
+      min-height: calc(100vh - 72px);
+      display: flex;
+      align-items: center;
+      background: linear-gradient(135deg, var(--pink-pale) 0%, var(--white) 40%, var(--gold-light) 100%);
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(232,160,180,0.08) 0%, transparent 70%);
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -10%;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,169,110,0.06) 0%, transparent 70%);
+    }
+    .hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-text h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 400;
+      color: var(--pink-dark);
+      line-height: 1.3;
+      margin-bottom: 8px;
+      letter-spacing: 2px;
+    }
+    .hero-text .tagline {
+      font-size: 1.05rem;
+      color: var(--text-light);
+      margin-bottom: 32px;
+      letter-spacing: 1px;
+    }
+    .hero-text p.lead {
+      font-size: 0.95rem;
+      line-height: 2;
+      margin-bottom: 36px;
+      color: var(--text);
+    }
+
+    /* Strengths badges in hero */
+    .strengths {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 36px;
+    }
+    .strength-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 18px;
+      background: var(--white);
+      border: 1px solid var(--pink-light);
+      border-radius: 50px;
+      font-size: 0.82rem;
+      font-weight: 400;
+      color: var(--pink-dark);
+      box-shadow: 0 2px 8px rgba(232,160,180,0.1);
+    }
+    .strength-badge .icon {
+      font-size: 1rem;
+    }
+
+    .hero-visual {
+      position: relative;
+    }
+    .hero-photo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .hero-photo {
+      border-radius: var(--radius);
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      background: var(--pink-light);
+      position: relative;
+    }
+    .hero-photo:nth-child(2) { margin-top: 30px; }
+    .hero-photo:nth-child(3) { margin-top: -30px; }
+    .hero-photo .photo-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--pink-light) 0%, var(--gold-light) 100%);
+      color: var(--pink-dark);
+      font-size: 0.75rem;
+      text-align: center;
+      padding: 12px;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 36px;
+      background: var(--pink);
+      color: var(--white);
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary:hover {
+      background: var(--pink-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(232,160,180,0.4);
+    }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 36px;
+      background: transparent;
+      color: var(--pink-dark);
+      border: 1.5px solid var(--pink);
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+    .btn-secondary:hover {
+      background: var(--pink-pale);
+      transform: translateY(-2px);
+    }
+
+    /* ===== Section Common ===== */
+    .section {
+      padding: 100px 24px;
+    }
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .section-title {
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    .section-title .en {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 400;
+      color: var(--pink-dark);
+      letter-spacing: 3px;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .section-title .ja {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      letter-spacing: 2px;
+    }
+    .section-desc {
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--text-light);
+      max-width: 600px;
+      margin: 0 auto 60px;
+      line-height: 1.9;
+    }
+    .section-alt {
+      background: var(--pink-pale);
+    }
+
+    /* ===== About / Features ===== */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+    .feature-card {
+      text-align: center;
+      padding: 40px 28px;
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+    .feature-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 20px;
+      background: var(--pink-pale);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+    }
+    .feature-card h3 {
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+    .feature-card p {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      line-height: 1.8;
+    }
+
+    /* ===== Services (Menu) ===== */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .service-card {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .service-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+    .service-bg {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--pink-light), var(--gold-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.4rem;
+    }
+    .service-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 20px;
+      background: linear-gradient(transparent, rgba(0,0,0,0.5));
+      color: var(--white);
+    }
+    .service-overlay h3 {
+      font-size: 0.95rem;
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+    .service-overlay p {
+      font-size: 0.72rem;
+      opacity: 0.85;
+    }
+
+    /* Services category grouping */
+    .service-category {
+      margin-bottom: 48px;
+    }
+    .service-category:last-child { margin-bottom: 0; }
+    .category-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--pink-dark);
+      margin-bottom: 20px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--pink-light);
+    }
+
+    /* ===== Pricing ===== */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .pricing-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      position: relative;
+    }
+    .pricing-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+    .pricing-card.popular {
+      border: 2px solid var(--pink);
+    }
+    .pricing-popular-badge {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: var(--pink);
+      color: var(--white);
+      font-size: 0.7rem;
+      padding: 4px 12px;
+      border-radius: 50px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+    .pricing-header {
+      padding: 32px 28px 20px;
+      text-align: center;
+      border-bottom: 1px solid var(--pink-pale);
+    }
+    .pricing-header h3 {
+      font-size: 1.05rem;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+    .pricing-header .plan-desc {
+      font-size: 0.78rem;
+      color: var(--text-light);
+      margin-bottom: 16px;
+    }
+    .pricing-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.6rem;
+      font-weight: 500;
+      color: var(--pink-dark);
+    }
+    .pricing-price .yen {
+      font-size: 1rem;
+      font-weight: 400;
+    }
+    .pricing-price .tax {
+      display: block;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.72rem;
+      color: var(--text-light);
+      font-weight: 300;
+    }
+    .pricing-body {
+      padding: 24px 28px 32px;
+    }
+    .pricing-body ul li {
+      font-size: 0.84rem;
+      padding: 8px 0;
+      border-bottom: 1px solid #f5f5f5;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .pricing-body ul li::before {
+      content: '✓';
+      color: var(--pink);
+      font-weight: 600;
+      font-size: 0.8rem;
+    }
+    .pricing-footer {
+      padding: 0 28px 32px;
+      text-align: center;
+    }
+
+    /* ===== Area ===== */
+    .area-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    .area-map-placeholder {
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, var(--pink-pale), var(--gold-light));
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      box-shadow: var(--shadow);
+    }
+    .area-info h3 {
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+    .area-free {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    .area-tag {
+      padding: 6px 16px;
+      background: var(--pink-pale);
+      color: var(--pink-dark);
+      border-radius: 50px;
+      font-size: 0.82rem;
+      font-weight: 400;
+    }
+    .area-note {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      background: var(--bg-cream);
+      padding: 16px 20px;
+      border-radius: 8px;
+      border-left: 3px solid var(--pink-light);
+    }
+
+    /* ===== Flow ===== */
+    .flow-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      position: relative;
+    }
+    .flow-steps::before {
+      content: '';
+      position: absolute;
+      top: 40px;
+      left: 12.5%;
+      right: 12.5%;
+      height: 2px;
+      background: var(--pink-light);
+    }
+    .flow-step {
+      text-align: center;
+      position: relative;
+    }
+    .flow-number {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 20px;
+      background: var(--white);
+      border: 2px solid var(--pink-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      color: var(--pink-dark);
+      position: relative;
+      z-index: 1;
+    }
+    .flow-step h3 {
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+    .flow-step p {
+      font-size: 0.78rem;
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+
+    /* ===== FAQ ===== */
+    .faq-list {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .faq-item {
+      border-bottom: 1px solid var(--pink-light);
+    }
+    .faq-question {
+      width: 100%;
+      padding: 24px 40px 24px 0;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      font-size: 0.92rem;
+      font-weight: 400;
+      color: var(--text);
+      font-family: 'Noto Sans JP', sans-serif;
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      line-height: 1.6;
+    }
+    .faq-question .q-mark {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      background: var(--pink-pale);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.9rem;
+      color: var(--pink-dark);
+      font-weight: 500;
+    }
+    .faq-question::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      width: 12px;
+      height: 12px;
+      border-right: 2px solid var(--pink);
+      border-bottom: 2px solid var(--pink);
+      transform: translateY(-70%) rotate(45deg);
+      transition: transform 0.3s ease;
+    }
+    .faq-item.open .faq-question::after {
+      transform: translateY(-30%) rotate(-135deg);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+    }
+    .faq-item.open .faq-answer {
+      max-height: 300px;
+    }
+    .faq-answer-inner {
+      padding: 0 0 24px 40px;
+      font-size: 0.85rem;
+      color: var(--text-light);
+      line-height: 1.9;
+    }
+
+    /* ===== CTA Banner ===== */
+    .cta-banner {
+      background: linear-gradient(135deg, var(--pink) 0%, var(--pink-dark) 100%);
+      padding: 80px 24px;
+      text-align: center;
+      color: var(--white);
+    }
+    .cta-banner h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 400;
+      letter-spacing: 3px;
+      margin-bottom: 12px;
+    }
+    .cta-banner p {
+      font-size: 0.9rem;
+      opacity: 0.9;
+      margin-bottom: 32px;
+    }
+    .btn-white {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 40px;
+      background: var(--white);
+      color: var(--pink-dark);
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+    }
+    .btn-white:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+
+    /* ===== Footer ===== */
+    .footer {
+      background: #faf8f6;
+      padding: 60px 24px 32px;
+    }
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+    .footer-brand .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      color: var(--pink-dark);
+      margin-bottom: 4px;
+      letter-spacing: 2px;
+    }
+    .footer-brand .footer-logo-sub {
+      font-size: 0.7rem;
+      color: var(--text-light);
+      margin-bottom: 16px;
+    }
+    .footer-brand p {
+      font-size: 0.8rem;
+      color: var(--text-light);
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+    .social-links {
+      display: flex;
+      gap: 12px;
+    }
+    .social-link {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      background: var(--white);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .social-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(232,160,180,0.3);
+    }
+    .social-link svg {
+      width: 20px;
+      height: 20px;
+      fill: var(--pink-dark);
+    }
+    .footer-col h4 {
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+    .footer-col a {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--text-light);
+      padding: 4px 0;
+      transition: var(--transition);
+    }
+    .footer-col a:hover { color: var(--pink-dark); }
+    .footer-bottom {
+      border-top: 1px solid #ece8e4;
+      padding-top: 24px;
+      text-align: center;
+      font-size: 0.72rem;
+      color: var(--text-light);
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 1024px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+      .hero-text h1 { font-size: 2.2rem; }
+      .strengths { justify-content: center; }
+      .hero-cta { justify-content: center; }
+      .hero-visual { max-width: 500px; margin: 0 auto; }
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+      .pricing-card:last-child { grid-column: 1 / -1; max-width: 380px; margin: 0 auto; }
+      .area-content { grid-template-columns: 1fr; gap: 32px; }
+      .flow-steps { grid-template-columns: repeat(2, 1fr); }
+      .flow-steps::before { display: none; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-desktop { display: none; }
+      .hamburger { display: flex; }
+      .nav-mobile { display: block; }
+      .hero-text h1 { font-size: 1.8rem; }
+      .section { padding: 72px 20px; }
+      .section-title .en { font-size: 1.7rem; }
+      .features-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .pricing-card:last-child { max-width: 100%; }
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+      .btn-reserve span.btn-text { display: none; }
+      .btn-reserve { padding: 10px 14px; }
+      .hero-cta { flex-direction: column; align-items: center; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-text h1 { font-size: 1.5rem; }
+      .hero-photo-grid { gap: 8px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .flow-steps { grid-template-columns: 1fr; }
+      .strength-badge { font-size: 0.75rem; padding: 6px 14px; }
+    }
+
+    /* ===== Animations ===== */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== Header ===== -->
+  <header class="header" id="header">
+    <div class="header-inner">
+      <a href="#" class="logo">
+        <span class="logo-main">Kiseki PhotoWorks</span>
+        <span class="logo-sub">キセキ PhotoWorks ～出張撮影サービス～</span>
+      </a>
+      <nav class="nav-desktop">
+        <a href="#about">私たちの想い</a>
+        <a href="#services">撮影メニュー</a>
+        <a href="#pricing">料金プラン</a>
+        <a href="#flow">ご利用の流れ</a>
+        <a href="#faq">よくある質問</a>
+      </nav>
+      <div class="header-right">
+        <a href="https://lin.ee/maainJ5" class="btn-reserve" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <span class="btn-text">予約・お問合せ</span>
+        </a>
+        <button class="hamburger" id="hamburger" aria-label="メニュー">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Nav -->
+  <div class="nav-overlay" id="navOverlay"></div>
+  <nav class="nav-mobile" id="navMobile">
+    <a href="#about" onclick="closeNav()">私たちの想い</a>
+    <a href="#services" onclick="closeNav()">撮影メニュー</a>
+    <a href="#pricing" onclick="closeNav()">料金プラン</a>
+    <a href="#area" onclick="closeNav()">出張エリア</a>
+    <a href="#flow" onclick="closeNav()">ご利用の流れ</a>
+    <a href="#faq" onclick="closeNav()">よくある質問</a>
+    <a href="https://lin.ee/maainJ5" target="_blank" rel="noopener" style="color: var(--pink-dark); font-weight: 500;">予約・お問合せ</a>
+  </nav>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <h1>家族の「キセキ」を<br>かたちに残す</h1>
+        <p class="tagline">～ あなたの大切な瞬間に寄り添う出張撮影 ～</p>
+
+        <div class="strengths">
+          <span class="strength-badge"><span class="icon">🩺</span> 看護師資格保有</span>
+          <span class="strength-badge"><span class="icon">👶</span> 2児の母</span>
+          <span class="strength-badge"><span class="icon">🏆</span> フォトコンテスト入賞歴</span>
+          <span class="strength-badge"><span class="icon">📸</span> 100組以上の撮影実績</span>
+        </div>
+
+        <p class="lead">
+          看護師として培った「安心できる空間づくり」と、<br>
+          母として知る「子どもの自然な表情の引き出し方」。<br>
+          おふたつの経験を活かして、ご家族の宝物になる<br>
+          一瞬を丁寧に撮影いたします。
+        </p>
+
+        <div class="hero-cta">
+          <a href="https://lin.ee/maainJ5" class="btn-primary" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            無料相談・ご予約
+          </a>
+          <a href="#services" class="btn-secondary">撮影メニューを見る</a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-photo-grid">
+          <div class="hero-photo">
+            <div class="photo-placeholder">ニューボーン<br>フォト</div>
+          </div>
+          <div class="hero-photo">
+            <div class="photo-placeholder">家族写真</div>
+          </div>
+          <div class="hero-photo">
+            <div class="photo-placeholder">キッズ<br>撮影</div>
+          </div>
+          <div class="hero-photo">
+            <div class="photo-placeholder">七五三</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== About ===== -->
+  <section class="section" id="about">
+    <div class="section-inner">
+      <div class="section-title fade-in">
+        <span class="en">About</span>
+        <span class="ja">キセキ PhotoWorks の想い</span>
+      </div>
+      <p class="section-desc fade-in">
+        すべての家族に「撮ってよかった」と思える写真体験を。<br>
+        看護師の経験と母としての目線から、安心・安全を最優先に<br>
+        ご家族の自然な姿を引き出します。
+      </p>
+      <div class="features-grid">
+        <div class="feature-card fade-in">
+          <div class="feature-icon">🩺</div>
+          <h3>看護師だからこその安心感</h3>
+          <p>医療の現場で培った細やかな気配りと安全管理。赤ちゃんや小さなお子さまの体調変化にも迅速に対応できます。医療ケア児の撮影もお任せください。</p>
+        </div>
+        <div class="feature-card fade-in">
+          <div class="feature-icon">🌿</div>
+          <h3>自然体を引き出す撮影</h3>
+          <p>2児の母だからこそ分かる、お子さまのペースに合わせた撮影。作りすぎないナチュラルな表情と、温かみのある光の中で、ありのままの姿を残します。</p>
+        </div>
+        <div class="feature-card fade-in">
+          <div class="feature-icon">✨</div>
+          <h3>確かな技術と実績</h3>
+          <p>フォトコンテスト入賞歴を持ち、子ども・家族・ペット併せて100組以上の撮影実績。お一人おひとりに寄り添った丁寧な撮影をお約束します。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Photography Style ===== -->
+  <section class="section section-alt" id="style">
+    <div class="section-inner">
+      <div class="section-title fade-in">
+        <span class="en">My Style</span>
+        <span class="ja">写真の特徴</span>
+      </div>
+      <p class="section-desc fade-in">
+        やさしい自然光とやわらかいトーンで、その日の空気感ごと写真に閉じ込める。<br>
+        「飾らない日常の美しさ」を大切にしています。
+      </p>
+      <div class="features-grid">
+        <div class="feature-card fade-in">
+          <div class="feature-icon">☀️</div>
+          <h3>やさしい自然光</h3>
+          <p>窓辺の光や木漏れ日など、自然の光を活かしたナチュラルな撮影。柔らかく温かみのある仕上がりが特徴です。</p>
+        </div>
+        <div class="feature-card fade-in">
+          <div class="feature-icon">🎨</div>
+          <h3>やわらかいトーン</h3>
+          <p>淡くふんわりとした色調で、見るたびにほっとするような写真に。お部屋に飾りたくなる仕上がりを目指しています。</p>
+        </div>
+        <div class="feature-card fade-in">
+          <div class="feature-icon">💛</div>
+          <h3>ありのままの瞬間</h3>
+          <p>かしこまったポーズだけでなく、ふとした笑顔やしぐさ、家族の自然なやり取りを大切に。その日の「空気感」ごとお届けします。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Services ===== -->
+  <section class="section" id="services">
+    <div class="section-inner">
+      <div class="section-title fade-in">
+        <span class="en">Menu</span>
+        <span class="ja">撮影メニュー</span>
+      </div>
+      <p class="section-desc fade-in">
+        赤ちゃんが生まれる前から家族の成長まで。<br>
+        人生のさまざまなシーンに寄り添い、一つひとつ丁寧に撮影いたします。
+      </p>
+
+      <!-- Category: Baby & Maternity -->
+      <div class="service-category fade-in">
+        <div class="category-label">🍼 ベビー・マタニティ</div>
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-bg">🤰</div>
+            <div class="service-overlay">
+              <h3>マタニティフォト</h3>
+              <p>新しい命を迎える特別な時間を</p>
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="service-bg">👶</div>
+            <div class="service-overlay">
+              <h3>ニューボーンフォト</h3>
+              <p>生まれたての小さな姿を残す</p>
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="service-bg">🌿</div>
+            <div class="service-overlay">
+              <h3>ナチュラルニューボーン</h3>
+              <p>自然体の赤ちゃんをやさしく撮影</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category: Kids & Family -->
+      <div class="service-category fade-in">
+        <div class="category-label">👨‍👩‍👧‍👦 キッズ・ファミリー</div>
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-bg">⛩️</div>
+            <div class="service-overlay">
+              <h3>お宮参り</h3>
+              <p>初めてのお参りの記念に</p>
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="service-bg">🎎</div>
+            <div class="service-overlay">
+              <h3>七五三撮影</h3>
+              <p>晴れ姿の成長記録</p>
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="service-bg">🧒</div>
+            <div class="service-overlay">
+              <h3>キッズ撮影会</h3>
+              <p>子どもらしい自然な表情を</p>
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="service-bg">👨‍👩‍👧</div>
+            <div class="service-overlay">
+              <h3>家族写真</h3>
+              <p>今しかないこの瞬間を家族みんなで</p>
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="service-bg">🩺</div>
+            <div class="service-overlay">
+              <h3>医療ケア児撮影</h3>
+              <p>看護師だから安心して任せられる</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category: Special -->
+      <div class="service-category fade-in">
+        <div class="category-label">💐 スペシャル・その他</div>
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-bg">💒</div>
+            <div class="service-overlay">
+              <h3>ウェディング</h3>
+              <p>おふたりの大切な一日を</p>
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="service-bg">📷</div>
+            <div class="service-overlay">
+              <h3>宣材写真</h3>
+              <p>あなたの魅力を最大限に引き出す</p>
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="service-bg">🌳</div>
+            <div class="service-overlay">
+              <h3>ロケーション撮影</h3>
+              <p>お気に入りの場所で特別な一枚</p>
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="service-bg">🏠</div>
+            <div class="service-overlay">
+              <h3>ブース撮影</h3>
+              <p>装飾されたスペースでの撮影</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Pricing ===== -->
+  <section class="section section-alt" id="pricing">
+    <div class="section-inner">
+      <div class="section-title fade-in">
+        <span class="en">Price</span>
+        <span class="ja">料金プラン</span>
+      </div>
+      <p class="section-desc fade-in">
+        撮影料・出張料・データ納品をすべて含んだシンプルな料金体系。<br>
+        追加料金の心配なく、撮影をお楽しみいただけます。
+      </p>
+      <div class="pricing-grid fade-in">
+        <!-- Light Plan -->
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <h3>ライトプラン</h3>
+            <p class="plan-desc">お試し・記念日の一枚に</p>
+            <div class="pricing-price">
+              <span class="yen">¥</span>15,000
+              <span class="tax">（税込 ¥16,500）</span>
+            </div>
+          </div>
+          <div class="pricing-body">
+            <ul>
+              <li>撮影時間 約30分</li>
+              <li>データ納品 30カット以上</li>
+              <li>全データ色味補正済み</li>
+              <li>北播磨エリア出張料込み</li>
+              <li>撮影後2週間以内に納品</li>
+            </ul>
+          </div>
+          <div class="pricing-footer">
+            <a href="https://lin.ee/maainJ5" class="btn-secondary" target="_blank" rel="noopener">相談する</a>
+          </div>
+        </div>
+        <!-- Standard Plan -->
+        <div class="pricing-card popular">
+          <span class="pricing-popular-badge">人気 No.1</span>
+          <div class="pricing-header">
+            <h3>スタンダードプラン</h3>
+            <p class="plan-desc">家族写真・イベントに</p>
+            <div class="pricing-price">
+              <span class="yen">¥</span>25,000
+              <span class="tax">（税込 ¥27,500）</span>
+            </div>
+          </div>
+          <div class="pricing-body">
+            <ul>
+              <li>撮影時間 約60分</li>
+              <li>データ納品 75カット以上</li>
+              <li>全データ色味補正済み</li>
+              <li>北播磨エリア出張料込み</li>
+              <li>撮影後2週間以内に納品</li>
+              <li>お気に入り5枚レタッチ</li>
+            </ul>
+          </div>
+          <div class="pricing-footer">
+            <a href="https://lin.ee/maainJ5" class="btn-primary" target="_blank" rel="noopener">予約する</a>
+          </div>
+        </div>
+        <!-- Premium Plan -->
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <h3>プレミアムプラン</h3>
+            <p class="plan-desc">七五三・お宮参りに最適</p>
+            <div class="pricing-price">
+              <span class="yen">¥</span>38,000
+              <span class="tax">（税込 ¥41,800）</span>
+            </div>
+          </div>
+          <div class="pricing-body">
+            <ul>
+              <li>撮影時間 約90分</li>
+              <li>データ納品 100カット以上</li>
+              <li>全データ色味補正済み</li>
+              <li>北播磨エリア出張料込み</li>
+              <li>撮影後2週間以内に納品</li>
+              <li>お気に入り10枚レタッチ</li>
+              <li>衣装チェンジ対応</li>
+            </ul>
+          </div>
+          <div class="pricing-footer">
+            <a href="https://lin.ee/maainJ5" class="btn-secondary" target="_blank" rel="noopener">相談する</a>
+          </div>
+        </div>
+      </div>
+      <p style="text-align:center; font-size:0.78rem; color:var(--text-light); margin-top:32px;" class="fade-in">
+        ※ 料金は目安です。撮影内容やご要望に応じてカスタマイズも可能です。お気軽にご相談ください。<br>
+        ※ ニューボーンフォト・医療ケア児撮影は別途お見積もりとなります。
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== Area ===== -->
+  <section class="section" id="area">
+    <div class="section-inner">
+      <div class="section-title fade-in">
+        <span class="en">Area</span>
+        <span class="ja">出張撮影エリア</span>
+      </div>
+      <p class="section-desc fade-in">
+        北播磨エリアを中心に出張撮影を行っています。<br>
+        対象エリア外でもお気軽にご相談ください。
+      </p>
+      <div class="area-content fade-in">
+        <div class="area-map-placeholder">🗾</div>
+        <div class="area-info">
+          <h3>🆓 無料出張エリア</h3>
+          <div class="area-free">
+            <span class="area-tag">西脇市</span>
+            <span class="area-tag">三木市</span>
+            <span class="area-tag">小野市</span>
+            <span class="area-tag">加西市</span>
+            <span class="area-tag">加東市</span>
+          </div>
+          <h3 style="margin-top:24px;">🚗 その他のエリア</h3>
+          <div class="area-note">
+            上記以外のエリアでも出張撮影を承っております。<br>
+            別途交通費をご相談の上で対応いたしますので、<br>
+            まずはお気軽にお問い合わせください。
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Flow ===== -->
+  <section class="section section-alt" id="flow">
+    <div class="section-inner">
+      <div class="section-title fade-in">
+        <span class="en">Flow</span>
+        <span class="ja">ご利用の流れ</span>
+      </div>
+      <p class="section-desc fade-in">
+        お問い合わせから撮影データのお届けまで、安心のサポート体制。
+      </p>
+      <div class="flow-steps fade-in">
+        <div class="flow-step">
+          <div class="flow-number">01</div>
+          <h3>お問い合わせ</h3>
+          <p>公式LINEまたはInstagramのDMからお気軽にご連絡ください。</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-number">02</div>
+          <h3>ヒアリング・日程調整</h3>
+          <p>撮影内容やご希望のイメージ、場所・日時を打ち合わせします。</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-number">03</div>
+          <h3>撮影当日</h3>
+          <p>リラックスした雰囲気で撮影。お子さまのペースに合わせて進行します。</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-number">04</div>
+          <h3>データ納品</h3>
+          <p>丁寧に補正・レタッチしたデータをオンラインでお届けします。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="section" id="faq">
+    <div class="section-inner">
+      <div class="section-title fade-in">
+        <span class="en">FAQ</span>
+        <span class="ja">よくある質問</span>
+      </div>
+      <div class="faq-list fade-in">
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="q-mark">Q</span>
+            子どもが泣いたり機嫌が悪くなった場合はどうなりますか？
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              ご安心ください。お子さまのペースを最優先に撮影を進めます。休憩を挟んだり、遊びを取り入れながら自然な笑顔を引き出します。看護師としての経験を活かし、お子さまが安心できる環境づくりを心がけています。
+            </div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="q-mark">Q</span>
+            雨天の場合はどうなりますか？
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              屋外ロケーションの場合、天候不良時は日程変更が可能です。撮影日の前日までにご連絡いただければ、無料で日程を変更いたします。屋内撮影への切り替えもご相談可能です。
+            </div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="q-mark">Q</span>
+            撮影場所はどこでもお願いできますか？
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              ご自宅、公園、神社、お気に入りの場所など、さまざまなロケーションで撮影可能です。場所のご相談もお気軽にどうぞ。おすすめスポットのご提案もさせていただきます。
+            </div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="q-mark">Q</span>
+            医療ケア児の撮影に対応していますか？
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              はい、看護師資格を持つカメラマンが対応いたします。医療的ケアが必要なお子さまも安心して撮影いただけます。事前にお子さまの状態やご配慮事項を丁寧にヒアリングさせていただきますので、お気軽にご相談ください。
+            </div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="q-mark">Q</span>
+            データの納品形式と納期を教えてください。
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              撮影データはオンラインギャラリーまたはデータ便にて、高解像度JPEGでお届けします。納期は撮影後約2週間を目安にしております。お急ぎの場合はご相談ください。
+            </div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="q-mark">Q</span>
+            キャンセル料はかかりますか？
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              撮影日の7日前まで：無料、3日前まで：撮影料の50%、前日・当日：撮影料の100%となります。天候不良による日程変更は無料で承ります。
+            </div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="q-mark">Q</span>
+            ペットと一緒に撮影できますか？
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              もちろんです！ペットも大切な家族の一員です。ペットとの撮影実績も豊富にございますので、安心してご依頼ください。お散歩コースやご自宅での撮影もおすすめです。
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="cta-banner">
+    <h2>Contact</h2>
+    <p>撮影のご相談・ご予約はお気軽にどうぞ</p>
+    <a href="https://lin.ee/maainJ5" class="btn-white" target="_blank" rel="noopener">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      公式LINEで予約・相談
+    </a>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo">Kiseki PhotoWorks</div>
+          <div class="footer-logo-sub">キセキ PhotoWorks ～出張撮影サービス～</div>
+          <p>
+            兵庫県北播磨エリアを中心に活動する出張フォトグラファー。<br>
+            看護師としての経験を活かし、赤ちゃんからご家族まで<br>
+            安心の撮影体験をお届けします。
+          </p>
+          <div class="social-links">
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/nachaan.nn" class="social-link" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="currentColor" style="fill: var(--pink-dark);">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+              </svg>
+            </a>
+            <!-- LINE -->
+            <a href="https://lin.ee/maainJ5" class="social-link" target="_blank" rel="noopener" aria-label="LINE公式アカウント">
+              <svg viewBox="0 0 24 24" fill="currentColor" style="fill: var(--pink-dark);">
+                <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>撮影メニュー</h4>
+          <a href="#services">ニューボーンフォト</a>
+          <a href="#services">マタニティフォト</a>
+          <a href="#services">お宮参り</a>
+          <a href="#services">七五三撮影</a>
+          <a href="#services">家族写真</a>
+          <a href="#services">キッズ撮影会</a>
+          <a href="#services">医療ケア児撮影</a>
+        </div>
+        <div class="footer-col">
+          <h4>インフォメーション</h4>
+          <a href="#about">私たちの想い</a>
+          <a href="#pricing">料金プラン</a>
+          <a href="#area">出張エリア</a>
+          <a href="#flow">ご利用の流れ</a>
+          <a href="#faq">よくある質問</a>
+          <a href="https://lin.ee/maainJ5" target="_blank" rel="noopener">お問い合わせ</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2025 キセキ PhotoWorks. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== JavaScript ===== -->
+  <script>
+    // Header scroll effect
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 10);
+    });
+
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const navMobile = document.getElementById('navMobile');
+    const navOverlay = document.getElementById('navOverlay');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navMobile.classList.toggle('open');
+      navOverlay.classList.toggle('show');
+      document.body.style.overflow = navMobile.classList.contains('open') ? 'hidden' : '';
+    });
+
+    function closeNav() {
+      hamburger.classList.remove('active');
+      navMobile.classList.remove('open');
+      navOverlay.classList.remove('show');
+      document.body.style.overflow = '';
+    }
+
+    navOverlay.addEventListener('click', closeNav);
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        const isOpen = item.classList.contains('open');
+        // Close all
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        // Toggle current
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+
+    // Scroll fade-in animation
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
