@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>キセキ PhotoWorks ～出張撮影サービス～</title>
-  <meta name="description" content="兵庫県北播磨エリアを中心に、家族・キッズ・ニューボーン・マタニティなど人生の大切な瞬間を出張撮影。看護師資格を持つカメラマンが安心の撮影体験をお届けします。">
+  <title>photo atelier KISEKI</title>
+  <meta name="description" content="兵庫県北播磨エリアを中心に、家族・キッズ・ニューボーン・マタニティなど人生の大切な瞬間を出張撮影。優しい自然光と柔らかいトーンで、その日の空気ごと写真に閉じ込めます。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -393,6 +393,268 @@
       background: var(--pink-pale);
     }
 
+    /* ===== Message (カメラマンの想い) ===== */
+    .section-message {
+      background: var(--bg-cream);
+      border-top: 1px solid var(--pink-light);
+      border-bottom: 1px solid var(--pink-light);
+    }
+    .message-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .message-photo-wrap {
+      position: relative;
+    }
+    .message-photo-img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      border-radius: var(--radius);
+      object-fit: cover;
+      display: block;
+      box-shadow: var(--shadow-hover);
+    }
+    .message-photo-placeholder {
+      width: 100%;
+      aspect-ratio: 3/4;
+      border-radius: var(--radius);
+      background: linear-gradient(145deg, var(--pink-pale) 0%, var(--gold-light) 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: var(--shadow-hover);
+      border: 1px dashed var(--pink-light);
+    }
+    .message-photo-placeholder .ph-icon { font-size: 2.6rem; }
+    .message-photo-placeholder .ph-label {
+      font-size: 0.72rem;
+      color: var(--text-light);
+      letter-spacing: 1px;
+    }
+    .message-deco {
+      position: absolute;
+      top: -12px;
+      right: -12px;
+      width: 48px;
+      height: 48px;
+      background: var(--pink-pale);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      box-shadow: 0 2px 10px rgba(232,160,180,0.2);
+    }
+    .message-text-area .section-title {
+      text-align: left;
+      margin-bottom: 28px;
+    }
+    .message-quote {
+      position: relative;
+      padding: 0 0 0 28px;
+      margin-bottom: 28px;
+    }
+    .message-quote::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 4px;
+      bottom: 4px;
+      width: 3px;
+      background: linear-gradient(to bottom, var(--pink), var(--gold));
+      border-radius: 2px;
+    }
+    .message-quote p {
+      font-size: 0.95rem;
+      line-height: 2.2;
+      color: var(--text);
+      /* ↓ ここにメッセージ本文を入れてください */
+    }
+    .message-body-sub {
+      font-size: 0.88rem;
+      line-height: 2;
+      color: var(--text-light);
+      margin-bottom: 32px;
+      /* ↓ ここにサブテキストを入れてください */
+    }
+    .message-profile {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding-top: 24px;
+      border-top: 1px solid var(--pink-light);
+    }
+    .profile-avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--pink-pale);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .profile-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .profile-credentials {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 14px;
+      margin-top: 6px;
+      list-style: none;
+    }
+    .profile-credentials li {
+      font-size: 0.72rem;
+      color: var(--text-light);
+      position: relative;
+      padding-left: 10px;
+    }
+    .profile-credentials li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--pink-light);
+    }
+
+    .profile-info .profile-name {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+    .profile-info .profile-title {
+      font-size: 0.78rem;
+      color: var(--text-light);
+      letter-spacing: 0.5px;
+    }
+    .profile-sig {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-style: italic;
+      color: var(--pink-dark);
+      margin-left: auto;
+      letter-spacing: 1px;
+    }
+
+    /* ===== Photo Upload UI ===== */
+    .photo-upload-wrap {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      cursor: pointer;
+    }
+    .photo-file-input { display: none; }
+    .photo-preview-img {
+      display: none;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0; left: 0;
+    }
+    .upload-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--pink-light) 0%, var(--gold-light) 100%);
+      color: var(--pink-dark);
+      gap: 6px;
+      transition: var(--transition);
+    }
+    .upload-placeholder:hover { filter: brightness(0.97); }
+    .upload-icon { font-size: 1.3rem; }
+    .upload-label { font-size: 0.72rem; font-weight: 500; }
+    .upload-hint { font-size: 0.62rem; color: var(--text-light); }
+    .upload-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(212,134,156,0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: var(--transition);
+    }
+    .photo-upload-wrap:hover .upload-overlay { opacity: 1; }
+    .upload-change-btn {
+      background: rgba(255,255,255,0.92);
+      color: var(--pink-dark);
+      font-size: 0.72rem;
+      padding: 5px 14px;
+      border-radius: 50px;
+      font-weight: 500;
+      border: 1px solid var(--pink-light);
+      pointer-events: none;
+    }
+    /* Message photo upload */
+    .message-photo-placeholder {
+      cursor: pointer;
+      position: relative;
+    }
+    .message-photo-placeholder:hover { filter: brightness(0.97); }
+    .msg-upload-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(212,134,156,0.18);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: var(--transition);
+    }
+    .message-photo-placeholder:hover .msg-upload-overlay { opacity: 1; }
+    .msg-preview-img {
+      display: none;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0; left: 0;
+      border-radius: var(--radius);
+    }
+    /* Avatar upload */
+    .profile-avatar {
+      cursor: pointer;
+      position: relative;
+    }
+    .avatar-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(212,134,156,0.6);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.55rem;
+      color: white;
+      font-weight: 500;
+      opacity: 0;
+      transition: var(--transition);
+    }
+    .profile-avatar:hover .avatar-overlay { opacity: 1; }
+    .avatar-preview-img {
+      display: none;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      position: absolute;
+      top: 0; left: 0;
+    }
+
     /* ===== About / Features ===== */
     .features-grid {
       display: grid;
@@ -457,7 +719,173 @@
       align-items: center;
       justify-content: center;
       font-size: 2.4rem;
+      position: relative;
+      cursor: pointer;
     }
+    .svc-preview-img {
+      display: none;
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .svc-emoji { transition: var(--transition); }
+    .svc-open-hint {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 0.72rem;
+      color: var(--pink-dark);
+      background: rgba(255,255,255,0.9);
+      padding: 6px 16px;
+      border-radius: 50px;
+      border: 1px solid var(--pink-light);
+      white-space: nowrap;
+      opacity: 0;
+      transition: var(--transition);
+      pointer-events: none;
+    }
+    .service-bg:hover .svc-open-hint { opacity: 1; }
+    .service-bg:hover .svc-emoji { transform: scale(0.75); opacity: 0.35; }
+    .svc-count {
+      display: none;
+      font-size: 0.63rem;
+      background: rgba(255,255,255,0.88);
+      color: var(--pink-dark);
+      padding: 2px 8px;
+      border-radius: 50px;
+      margin-top: 4px;
+    }
+
+    /* ===== Gallery Modal ===== */
+    .gal-modal {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .gal-modal.open { opacity: 1; }
+    .gal-backdrop {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.65);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .gal-dialog {
+      position: relative;
+      z-index: 1;
+      background: var(--white);
+      border-radius: 20px;
+      width: min(680px, 92vw);
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 32px 28px 28px;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.2);
+      transform: translateY(20px);
+      transition: transform 0.35s ease;
+    }
+    .gal-modal.open .gal-dialog { transform: translateY(0); }
+    .gal-close {
+      position: absolute;
+      top: 14px; right: 14px;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: var(--pink-pale);
+      border: none;
+      cursor: pointer;
+      font-size: 0.9rem;
+      color: var(--pink-dark);
+      display: flex; align-items: center; justify-content: center;
+      transition: var(--transition);
+    }
+    .gal-close:hover { background: var(--pink-light); }
+    .gal-header { padding-right: 40px; margin-bottom: 20px; }
+    .gal-header h3 { font-size: 1.15rem; font-weight: 500; color: var(--text); margin-bottom: 2px; }
+    .gal-header p { font-size: 0.8rem; color: var(--text-light); }
+    .gal-main {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .gal-nav-btn {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: var(--pink-pale);
+      border: none;
+      cursor: pointer;
+      font-size: 1.6rem;
+      color: var(--pink-dark);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      transition: var(--transition);
+      line-height: 1;
+    }
+    .gal-nav-btn:hover:not(:disabled) { background: var(--pink-light); }
+    .gal-nav-btn:disabled { opacity: 0.2; cursor: default; }
+    .gal-img-wrap {
+      flex: 1;
+      aspect-ratio: 4/3;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--pink-pale);
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .gal-bg-blur {
+      position: absolute;
+      inset: -10px;
+      background-size: cover;
+      background-position: center;
+      filter: blur(18px);
+      transform: scale(1.05);
+      opacity: 0.55;
+      transition: background-image 0.3s ease;
+    }
+    .gal-img-wrap img {
+      position: relative;
+      z-index: 1;
+      width: 100%; height: 100%;
+      object-fit: contain;
+      display: none;
+    }
+    .gal-no-photo { text-align: center; color: var(--text-light); padding: 20px; }
+    .gal-no-photo .no-photo-icon { font-size: 2.4rem; display: block; margin-bottom: 8px; }
+    .gal-no-photo p { font-size: 0.82rem; }
+    .gal-counter { text-align: center; font-size: 0.74rem; color: var(--text-light); margin-bottom: 10px; min-height: 1.2em; }
+    .gal-thumbs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+    .gal-thumb {
+      width: 64px; height: 64px;
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      border: 2.5px solid transparent;
+      transition: var(--transition);
+      flex-shrink: 0;
+    }
+    .gal-thumb.active { border-color: var(--pink); }
+    .gal-thumb:hover { border-color: var(--pink-light); }
+    .gal-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .gal-actions { display: flex; justify-content: center; }
+    .gal-upload-label {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 32px;
+      background: var(--pink);
+      color: var(--white);
+      border-radius: 50px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .gal-upload-label:hover { background: var(--pink-dark); transform: translateY(-1px); box-shadow: 0 4px 15px rgba(232,160,180,0.4); }
     .service-overlay {
       position: absolute;
       bottom: 0;
@@ -875,6 +1303,7 @@
       .flow-steps { grid-template-columns: repeat(2, 1fr); }
       .flow-steps::before { display: none; }
       .footer-top { grid-template-columns: 1fr 1fr; }
+      .message-layout { grid-template-columns: 220px 1fr; gap: 40px; }
     }
 
     @media (max-width: 768px) {
@@ -892,6 +1321,16 @@
       .btn-reserve span.btn-text { display: none; }
       .btn-reserve { padding: 10px 14px; }
       .hero-cta { flex-direction: column; align-items: center; }
+      .message-layout {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+      .message-photo-wrap {
+        max-width: 240px;
+        margin: 0 auto;
+      }
+      .message-text-area .section-title { text-align: center; }
+      .profile-sig { display: none; }
     }
 
     @media (max-width: 480px) {
@@ -920,11 +1359,11 @@
   <header class="header" id="header">
     <div class="header-inner">
       <a href="#" class="logo">
-        <span class="logo-main">Kiseki PhotoWorks</span>
-        <span class="logo-sub">キセキ PhotoWorks ～出張撮影サービス～</span>
+        <span class="logo-main">photo atelier KISEKI</span>
+        <span class="logo-sub">大切な日も何気ない日も。</span>
       </a>
       <nav class="nav-desktop">
-        <a href="#about">私たちの想い</a>
+        <a href="#message">想い</a>
         <a href="#services">撮影メニュー</a>
         <a href="#pricing">料金プラン</a>
         <a href="#flow">ご利用の流れ</a>
@@ -947,7 +1386,7 @@
   <!-- Mobile Nav -->
   <div class="nav-overlay" id="navOverlay"></div>
   <nav class="nav-mobile" id="navMobile">
-    <a href="#about" onclick="closeNav()">私たちの想い</a>
+    <a href="#message" onclick="closeNav()">想い</a>
     <a href="#services" onclick="closeNav()">撮影メニュー</a>
     <a href="#pricing" onclick="closeNav()">料金プラン</a>
     <a href="#area" onclick="closeNav()">出張エリア</a>
@@ -960,21 +1399,14 @@
   <section class="hero">
     <div class="hero-inner">
       <div class="hero-text">
-        <h1>家族の「キセキ」を<br>かたちに残す</h1>
-        <p class="tagline">～ あなたの大切な瞬間に寄り添う出張撮影 ～</p>
+        <h1>何気ない今日が、<br>未来の宝物になる。</h1>
+        <p class="tagline">大切な日も何気ない日も。</p>
 
-        <div class="strengths">
-          <span class="strength-badge"><span class="icon">🩺</span> 看護師資格保有</span>
-          <span class="strength-badge"><span class="icon">👶</span> 2児の母</span>
-          <span class="strength-badge"><span class="icon">🏆</span> フォトコンテスト入賞歴</span>
-          <span class="strength-badge"><span class="icon">📸</span> 100組以上の撮影実績</span>
-        </div>
 
         <p class="lead">
-          看護師として培った「安心できる空間づくり」と、<br>
-          母として知る「子どもの自然な表情の引き出し方」。<br>
-          おふたつの経験を活かして、ご家族の宝物になる<br>
-          一瞬を丁寧に撮影いたします。
+          優しい自然光と柔らかいトーンで、<br>
+          その日の空気ごと写真に閉じ込めます。<br>
+          「飾らない日常の美しさ」を大切にしています。
         </p>
 
         <div class="hero-cta">
@@ -989,84 +1421,138 @@
       <div class="hero-visual">
         <div class="hero-photo-grid">
           <div class="hero-photo">
-            <div class="photo-placeholder">ニューボーン<br>フォト</div>
+            <div class="photo-upload-wrap" onclick="document.getElementById('heroImg1').click()">
+              <input type="file" id="heroImg1" accept="image/*" class="photo-file-input" onchange="previewPhoto(this)">
+              <img class="photo-preview-img" alt="">
+              <div class="upload-placeholder">
+                <span class="upload-icon">📁</span>
+                <span class="upload-label">ニューボーンフォト</span>
+                <span class="upload-hint">タップして写真を追加</span>
+              </div>
+              <div class="upload-overlay"><span class="upload-change-btn">写真を変更</span></div>
+            </div>
           </div>
           <div class="hero-photo">
-            <div class="photo-placeholder">家族写真</div>
+            <div class="photo-upload-wrap" onclick="document.getElementById('heroImg2').click()">
+              <input type="file" id="heroImg2" accept="image/*" class="photo-file-input" onchange="previewPhoto(this)">
+              <img class="photo-preview-img" alt="">
+              <div class="upload-placeholder">
+                <span class="upload-icon">📁</span>
+                <span class="upload-label">家族写真</span>
+                <span class="upload-hint">タップして写真を追加</span>
+              </div>
+              <div class="upload-overlay"><span class="upload-change-btn">写真を変更</span></div>
+            </div>
           </div>
           <div class="hero-photo">
-            <div class="photo-placeholder">キッズ<br>撮影</div>
+            <div class="photo-upload-wrap" onclick="document.getElementById('heroImg3').click()">
+              <input type="file" id="heroImg3" accept="image/*" class="photo-file-input" onchange="previewPhoto(this)">
+              <img class="photo-preview-img" alt="">
+              <div class="upload-placeholder">
+                <span class="upload-icon">📁</span>
+                <span class="upload-label">キッズ撮影</span>
+                <span class="upload-hint">タップして写真を追加</span>
+              </div>
+              <div class="upload-overlay"><span class="upload-change-btn">写真を変更</span></div>
+            </div>
           </div>
           <div class="hero-photo">
-            <div class="photo-placeholder">七五三</div>
+            <div class="photo-upload-wrap" onclick="document.getElementById('heroImg4').click()">
+              <input type="file" id="heroImg4" accept="image/*" class="photo-file-input" onchange="previewPhoto(this)">
+              <img class="photo-preview-img" alt="">
+              <div class="upload-placeholder">
+                <span class="upload-icon">📁</span>
+                <span class="upload-label">七五三</span>
+                <span class="upload-hint">タップして写真を追加</span>
+              </div>
+              <div class="upload-overlay"><span class="upload-change-btn">写真を変更</span></div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== About ===== -->
-  <section class="section" id="about">
+  <!-- ===== Message（カメラマンの想い） ===== -->
+  <!--
+    ★ このセクションに「カメラマン・代表の想い」を記載します。
+    ★ テキストを編集する箇所は下記の <!-- EDIT HERE --> コメントを目印にしてください。
+  -->
+  <section class="section section-message" id="message">
     <div class="section-inner">
-      <div class="section-title fade-in">
-        <span class="en">About</span>
-        <span class="ja">キセキ PhotoWorks の想い</span>
-      </div>
-      <p class="section-desc fade-in">
-        すべての家族に「撮ってよかった」と思える写真体験を。<br>
-        看護師の経験と母としての目線から、安心・安全を最優先に<br>
-        ご家族の自然な姿を引き出します。
-      </p>
-      <div class="features-grid">
-        <div class="feature-card fade-in">
-          <div class="feature-icon">🩺</div>
-          <h3>看護師だからこその安心感</h3>
-          <p>医療の現場で培った細やかな気配りと安全管理。赤ちゃんや小さなお子さまの体調変化にも迅速に対応できます。医療ケア児の撮影もお任せください。</p>
+      <div class="message-layout fade-in">
+
+        <!-- 左：カメラマンの写真 -->
+        <div class="message-photo-wrap">
+          <div class="message-photo-placeholder" onclick="document.getElementById('msgPhoto').click()">
+            <input type="file" id="msgPhoto" accept="image/*" class="photo-file-input" onchange="previewMsgPhoto(this)">
+            <img class="msg-preview-img" alt="">
+            <span class="ph-icon">📁</span>
+            <span class="ph-label">カメラマンの写真を追加</span>
+            <div class="msg-upload-overlay"><span class="upload-change-btn">写真を変更</span></div>
+          </div>
+          <div class="message-deco">✨</div>
         </div>
-        <div class="feature-card fade-in">
-          <div class="feature-icon">🌿</div>
-          <h3>自然体を引き出す撮影</h3>
-          <p>2児の母だからこそ分かる、お子さまのペースに合わせた撮影。作りすぎないナチュラルな表情と、温かみのある光の中で、ありのままの姿を残します。</p>
+
+        <!-- 右：メッセージテキスト -->
+        <div class="message-text-area">
+          <div class="section-title">
+            <span class="en">Message</span>
+            <span class="ja">カメラマンの想い</span>
+          </div>
+
+          <div class="message-quote">
+            <p>
+              空を撮ることから、私の写真の旅は始まりました。<br>
+              <br>
+              働き始めて初めて買ったカメラで見た景色は、<br>
+              携帯では出会えなかった世界でした。<br>
+              工場夜景、桜、ホタル——<br>
+              もっと美しく撮りたくて、本を読み、人に教わり、<br>
+              試行錯誤を重ねた日々。<br>
+              <br>
+              写真には、目の前の感動をそのまま伝える力がある。<br>
+              その魅力に夢中になりました。
+            </p>
+          </div>
+
+          <p class="message-body-sub">
+            やがて人を撮るようになり、子どもが生まれた時に気づきました。<br>
+            人生で最も美しく、最も残す価値があるのは、<br>
+            家族と過ごす何気ない日常だということを。<br>
+            <br>
+            子どもの成長、家族の笑顔、親が子どもを見つめる優しいまなざし。<br>
+            障害や医療的ケアの有無に関わらず、すべての家族に<br>
+            思い出を残す機会を届けたい。<br>
+            写真を見返した時に、その時の愛情と幸せがよみがえる——<br>
+            それが、私たちの使命です。
+          </p>
+
+          <div class="message-profile">
+            <div class="profile-avatar" onclick="document.getElementById('avatarImg').click()">
+              <input type="file" id="avatarImg" accept="image/*" class="photo-file-input" onchange="previewAvatarPhoto(this)">
+              <img class="avatar-preview-img" alt="">
+              <span class="avatar-emoji">📷</span>
+              <div class="avatar-overlay">変更</div>
+            </div>
+            <div class="profile-info">
+              <div class="profile-name">お名前</div>
+              <div class="profile-title">photo atelier KISEKI 代表 ／ フォトグラファー</div>
+              <ul class="profile-credentials">
+                <li>看護師資格保有</li>
+                <li>2児の母</li>
+                <li>フォトコンテスト入賞歴</li>
+                <li>100組以上の撮影実績</li>
+              </ul>
+            </div>
+            <div class="profile-sig">Kiseki</div>
+          </div>
         </div>
-        <div class="feature-card fade-in">
-          <div class="feature-icon">✨</div>
-          <h3>確かな技術と実績</h3>
-          <p>フォトコンテスト入賞歴を持ち、子ども・家族・ペット併せて100組以上の撮影実績。お一人おひとりに寄り添った丁寧な撮影をお約束します。</p>
-        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- ===== Photography Style ===== -->
-  <section class="section section-alt" id="style">
-    <div class="section-inner">
-      <div class="section-title fade-in">
-        <span class="en">My Style</span>
-        <span class="ja">写真の特徴</span>
-      </div>
-      <p class="section-desc fade-in">
-        やさしい自然光とやわらかいトーンで、その日の空気感ごと写真に閉じ込める。<br>
-        「飾らない日常の美しさ」を大切にしています。
-      </p>
-      <div class="features-grid">
-        <div class="feature-card fade-in">
-          <div class="feature-icon">☀️</div>
-          <h3>やさしい自然光</h3>
-          <p>窓辺の光や木漏れ日など、自然の光を活かしたナチュラルな撮影。柔らかく温かみのある仕上がりが特徴です。</p>
-        </div>
-        <div class="feature-card fade-in">
-          <div class="feature-icon">🎨</div>
-          <h3>やわらかいトーン</h3>
-          <p>淡くふんわりとした色調で、見るたびにほっとするような写真に。お部屋に飾りたくなる仕上がりを目指しています。</p>
-        </div>
-        <div class="feature-card fade-in">
-          <div class="feature-icon">💛</div>
-          <h3>ありのままの瞬間</h3>
-          <p>かしこまったポーズだけでなく、ふとした笑顔やしぐさ、家族の自然なやり取りを大切に。その日の「空気感」ごとお届けします。</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- ===== Services ===== -->
   <section class="section" id="services">
@@ -1084,25 +1570,37 @@
       <div class="service-category fade-in">
         <div class="category-label">🍼 ベビー・マタニティ</div>
         <div class="services-grid">
-          <div class="service-card">
-            <div class="service-bg">🤰</div>
+          <div class="service-card" onclick="openGallery('svc1','マタニティフォト','新しい命を迎える特別な時間を')">
+            <div class="service-bg" id="svc1-bg">
+              <img class="svc-preview-img" alt=""><span class="svc-emoji">🤰</span>
+              <span class="svc-open-hint">📷 ギャラリーを開く</span>
+            </div>
             <div class="service-overlay">
               <h3>マタニティフォト</h3>
               <p>新しい命を迎える特別な時間を</p>
+              <span class="svc-count" id="svc1-count"></span>
             </div>
           </div>
-          <div class="service-card">
-            <div class="service-bg">👶</div>
+          <div class="service-card" onclick="openGallery('svc2','ニューボーンフォト','生まれたての小さな姿を残す')">
+            <div class="service-bg" id="svc2-bg">
+              <img class="svc-preview-img" alt=""><span class="svc-emoji">👶</span>
+              <span class="svc-open-hint">📷 ギャラリーを開く</span>
+            </div>
             <div class="service-overlay">
               <h3>ニューボーンフォト</h3>
               <p>生まれたての小さな姿を残す</p>
+              <span class="svc-count" id="svc2-count"></span>
             </div>
           </div>
-          <div class="service-card">
-            <div class="service-bg">🌿</div>
+          <div class="service-card" onclick="openGallery('svc3','ナチュラルニューボーン','自然体の赤ちゃんをやさしく撮影')">
+            <div class="service-bg" id="svc3-bg">
+              <img class="svc-preview-img" alt=""><span class="svc-emoji">🌿</span>
+              <span class="svc-open-hint">📷 ギャラリーを開く</span>
+            </div>
             <div class="service-overlay">
               <h3>ナチュラルニューボーン</h3>
               <p>自然体の赤ちゃんをやさしく撮影</p>
+              <span class="svc-count" id="svc3-count"></span>
             </div>
           </div>
         </div>
@@ -1112,39 +1610,59 @@
       <div class="service-category fade-in">
         <div class="category-label">👨‍👩‍👧‍👦 キッズ・ファミリー</div>
         <div class="services-grid">
-          <div class="service-card">
-            <div class="service-bg">⛩️</div>
+          <div class="service-card" onclick="openGallery('svc4','お宮参り','初めてのお参りの記念に')">
+            <div class="service-bg" id="svc4-bg">
+              <img class="svc-preview-img" alt=""><span class="svc-emoji">⛩️</span>
+              <span class="svc-open-hint">📷 ギャラリーを開く</span>
+            </div>
             <div class="service-overlay">
               <h3>お宮参り</h3>
               <p>初めてのお参りの記念に</p>
+              <span class="svc-count" id="svc4-count"></span>
             </div>
           </div>
-          <div class="service-card">
-            <div class="service-bg">🎎</div>
+          <div class="service-card" onclick="openGallery('svc5','七五三撮影','晴れ姿の成長記録')">
+            <div class="service-bg" id="svc5-bg">
+              <img class="svc-preview-img" alt=""><span class="svc-emoji">🎎</span>
+              <span class="svc-open-hint">📷 ギャラリーを開く</span>
+            </div>
             <div class="service-overlay">
               <h3>七五三撮影</h3>
               <p>晴れ姿の成長記録</p>
+              <span class="svc-count" id="svc5-count"></span>
             </div>
           </div>
-          <div class="service-card">
-            <div class="service-bg">🧒</div>
+          <div class="service-card" onclick="openGallery('svc6','キッズ撮影会','子どもらしい自然な表情を')">
+            <div class="service-bg" id="svc6-bg">
+              <img class="svc-preview-img" alt=""><span class="svc-emoji">🧒</span>
+              <span class="svc-open-hint">📷 ギャラリーを開く</span>
+            </div>
             <div class="service-overlay">
               <h3>キッズ撮影会</h3>
               <p>子どもらしい自然な表情を</p>
+              <span class="svc-count" id="svc6-count"></span>
             </div>
           </div>
-          <div class="service-card">
-            <div class="service-bg">👨‍👩‍👧</div>
+          <div class="service-card" onclick="openGallery('svc7','家族写真','今しかないこの瞬間を家族みんなで')">
+            <div class="service-bg" id="svc7-bg">
+              <img class="svc-preview-img" alt=""><span class="svc-emoji">👨‍👩‍👧</span>
+              <span class="svc-open-hint">📷 ギャラリーを開く</span>
+            </div>
             <div class="service-overlay">
               <h3>家族写真</h3>
               <p>今しかないこの瞬間を家族みんなで</p>
+              <span class="svc-count" id="svc7-count"></span>
             </div>
           </div>
-          <div class="service-card">
-            <div class="service-bg">🩺</div>
+          <div class="service-card" onclick="openGallery('svc8','医療ケア児撮影','看護師だから安心して任せられる')">
+            <div class="service-bg" id="svc8-bg">
+              <img class="svc-preview-img" alt=""><span class="svc-emoji">🩺</span>
+              <span class="svc-open-hint">📷 ギャラリーを開く</span>
+            </div>
             <div class="service-overlay">
               <h3>医療ケア児撮影</h3>
               <p>看護師だから安心して任せられる</p>
+              <span class="svc-count" id="svc8-count"></span>
             </div>
           </div>
         </div>
@@ -1154,32 +1672,48 @@
       <div class="service-category fade-in">
         <div class="category-label">💐 スペシャル・その他</div>
         <div class="services-grid">
-          <div class="service-card">
-            <div class="service-bg">💒</div>
+          <div class="service-card" onclick="openGallery('svc9','ウェディング','おふたりの大切な一日を')">
+            <div class="service-bg" id="svc9-bg">
+              <img class="svc-preview-img" alt=""><span class="svc-emoji">💒</span>
+              <span class="svc-open-hint">📷 ギャラリーを開く</span>
+            </div>
             <div class="service-overlay">
               <h3>ウェディング</h3>
               <p>おふたりの大切な一日を</p>
+              <span class="svc-count" id="svc9-count"></span>
             </div>
           </div>
-          <div class="service-card">
-            <div class="service-bg">📷</div>
+          <div class="service-card" onclick="openGallery('svc10','宣材写真','あなたの魅力を最大限に引き出す')">
+            <div class="service-bg" id="svc10-bg">
+              <img class="svc-preview-img" alt=""><span class="svc-emoji">📷</span>
+              <span class="svc-open-hint">📷 ギャラリーを開く</span>
+            </div>
             <div class="service-overlay">
               <h3>宣材写真</h3>
               <p>あなたの魅力を最大限に引き出す</p>
+              <span class="svc-count" id="svc10-count"></span>
             </div>
           </div>
-          <div class="service-card">
-            <div class="service-bg">🌳</div>
+          <div class="service-card" onclick="openGallery('svc11','ロケーション撮影','お気に入りの場所で特別な一枚')">
+            <div class="service-bg" id="svc11-bg">
+              <img class="svc-preview-img" alt=""><span class="svc-emoji">🌳</span>
+              <span class="svc-open-hint">📷 ギャラリーを開く</span>
+            </div>
             <div class="service-overlay">
               <h3>ロケーション撮影</h3>
               <p>お気に入りの場所で特別な一枚</p>
+              <span class="svc-count" id="svc11-count"></span>
             </div>
           </div>
-          <div class="service-card">
-            <div class="service-bg">🏠</div>
+          <div class="service-card" onclick="openGallery('svc12','ブース撮影','装飾されたスペースでの撮影')">
+            <div class="service-bg" id="svc12-bg">
+              <img class="svc-preview-img" alt=""><span class="svc-emoji">🏠</span>
+              <span class="svc-open-hint">📷 ギャラリーを開く</span>
+            </div>
             <div class="service-overlay">
               <h3>ブース撮影</h3>
               <p>装飾されたスペースでの撮影</p>
+              <span class="svc-count" id="svc12-count"></span>
             </div>
           </div>
         </div>
@@ -1447,17 +1981,50 @@
     </a>
   </section>
 
+  <!-- ===== Gallery Modal ===== -->
+  <div class="gal-modal" id="galModal" style="display:none">
+    <div class="gal-backdrop" onclick="closeGallery()"></div>
+    <div class="gal-dialog">
+      <button class="gal-close" onclick="closeGallery()">✕</button>
+      <div class="gal-header">
+        <h3 id="galTitle"></h3>
+        <p id="galDesc"></p>
+      </div>
+      <div class="gal-main">
+        <button class="gal-nav-btn" id="galPrev" onclick="galPrev()">&#8249;</button>
+        <div class="gal-img-wrap">
+          <div class="gal-bg-blur" id="galBgBlur"></div>
+          <img id="galMainImg" alt="">
+          <div class="gal-no-photo" id="galNoPhoto">
+            <span class="no-photo-icon">📷</span>
+            <p>まだ写真がありません</p>
+            <p style="font-size:0.72rem; margin-top:4px; color:var(--text-light);">下のボタンから追加してください</p>
+          </div>
+        </div>
+        <button class="gal-nav-btn" id="galNext" onclick="galNext()">&#8250;</button>
+      </div>
+      <div class="gal-counter" id="galCounter"></div>
+      <div class="gal-thumbs" id="galThumbs"></div>
+      <div class="gal-actions">
+        <label class="gal-upload-label">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          写真を追加（複数選択可）
+          <input type="file" id="galFileInput" accept="image/*" multiple style="display:none" onchange="addGalPhotos(this)">
+        </label>
+      </div>
+    </div>
+  </div>
+
   <!-- ===== Footer ===== -->
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-top">
         <div class="footer-brand">
-          <div class="footer-logo">Kiseki PhotoWorks</div>
-          <div class="footer-logo-sub">キセキ PhotoWorks ～出張撮影サービス～</div>
+          <div class="footer-logo">photo atelier KISEKI</div>
+          <div class="footer-logo-sub">大切な日も何気ない日も。</div>
           <p>
-            兵庫県北播磨エリアを中心に活動する出張フォトグラファー。<br>
-            看護師としての経験を活かし、赤ちゃんからご家族まで<br>
-            安心の撮影体験をお届けします。
+            優しい自然光と柔らかいトーンで、その日の空気ごと写真に閉じ込めます。<br>
+            「飾らない日常の美しさ」を大切にしています。
           </p>
           <div class="social-links">
             <!-- Instagram -->
@@ -1486,7 +2053,7 @@
         </div>
         <div class="footer-col">
           <h4>インフォメーション</h4>
-          <a href="#about">私たちの想い</a>
+          <a href="#message">カメラマンの想い</a>
           <a href="#pricing">料金プラン</a>
           <a href="#area">出張エリア</a>
           <a href="#flow">ご利用の流れ</a>
@@ -1495,7 +2062,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        &copy; 2025 キセキ PhotoWorks. All rights reserved.
+        &copy; 2025 photo atelier KISEKI. All rights reserved.
       </div>
     </div>
   </footer>
@@ -1534,12 +2101,175 @@
       btn.addEventListener('click', () => {
         const item = btn.parentElement;
         const isOpen = item.classList.contains('open');
-        // Close all
         document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-        // Toggle current
         if (!isOpen) item.classList.add('open');
       });
     });
+
+    // 縦長写真は上基準、横長は中央に自動配置
+    function autoPosition(img) {
+      const apply = () => {
+        img.style.objectPosition = img.naturalHeight > img.naturalWidth ? 'top' : 'center';
+      };
+      if (img.complete && img.naturalWidth > 0) { apply(); }
+      else { img.addEventListener('load', apply, { once: true }); }
+    }
+
+    // Photo upload preview
+    function previewPhoto(input) {
+      if (!input.files || !input.files[0]) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const wrap = input.parentElement;
+        const img = wrap.querySelector('.photo-preview-img');
+        const placeholder = wrap.querySelector('.upload-placeholder');
+        autoPosition(img);
+        img.src = e.target.result;
+        img.style.display = 'block';
+        if (placeholder) placeholder.style.display = 'none';
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+
+    function previewMsgPhoto(input) {
+      if (!input.files || !input.files[0]) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const wrap = input.parentElement;
+        const img = wrap.querySelector('.msg-preview-img');
+        autoPosition(img);
+        img.src = e.target.result;
+        img.style.display = 'block';
+        wrap.querySelectorAll('.ph-icon, .ph-label').forEach(el => el.style.display = 'none');
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+
+    // ===== Gallery Logic =====
+    const svcPhotos = {};
+    let activeGalId = null;
+    let activeGalIdx = 0;
+
+    function openGallery(svcId, title, desc) {
+      activeGalId = svcId;
+      activeGalIdx = 0;
+      document.getElementById('galTitle').textContent = title;
+      document.getElementById('galDesc').textContent = desc;
+      renderGal();
+      const modal = document.getElementById('galModal');
+      modal.style.display = 'flex';
+      requestAnimationFrame(() => modal.classList.add('open'));
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeGallery() {
+      const modal = document.getElementById('galModal');
+      modal.classList.remove('open');
+      setTimeout(() => { modal.style.display = 'none'; }, 320);
+      document.body.style.overflow = '';
+    }
+
+    function renderGal() {
+      const photos = svcPhotos[activeGalId] || [];
+      const mainImg = document.getElementById('galMainImg');
+      const noPhoto = document.getElementById('galNoPhoto');
+      const thumbsEl = document.getElementById('galThumbs');
+      const counter = document.getElementById('galCounter');
+      const prevBtn = document.getElementById('galPrev');
+      const nextBtn = document.getElementById('galNext');
+
+      const bgBlur = document.getElementById('galBgBlur');
+      if (photos.length === 0) {
+        mainImg.style.display = 'none';
+        noPhoto.style.display = 'block';
+        thumbsEl.innerHTML = '';
+        counter.textContent = '';
+        bgBlur.style.backgroundImage = '';
+      } else {
+        mainImg.src = photos[activeGalIdx];
+        mainImg.style.display = 'block';
+        noPhoto.style.display = 'none';
+        bgBlur.style.backgroundImage = `url(${photos[activeGalIdx]})`;
+        counter.textContent = `${activeGalIdx + 1} / ${photos.length}`;
+        thumbsEl.innerHTML = photos.map((p, i) =>
+          `<div class="gal-thumb ${i === activeGalIdx ? 'active' : ''}" onclick="goGal(${i})">
+            <img src="${p}" alt="">
+          </div>`
+        ).join('');
+        thumbsEl.querySelectorAll('.gal-thumb img').forEach(autoPosition);
+      }
+      prevBtn.disabled = activeGalIdx === 0;
+      nextBtn.disabled = photos.length === 0 || activeGalIdx >= photos.length - 1;
+    }
+
+    function goGal(idx) { activeGalIdx = idx; renderGal(); }
+    function galPrev() { if (activeGalIdx > 0) { activeGalIdx--; renderGal(); } }
+    function galNext() {
+      const n = (svcPhotos[activeGalId] || []).length;
+      if (activeGalIdx < n - 1) { activeGalIdx++; renderGal(); }
+    }
+
+    function addGalPhotos(input) {
+      if (!input.files || !input.files.length) return;
+      if (!svcPhotos[activeGalId]) svcPhotos[activeGalId] = [];
+      const files = Array.from(input.files);
+      let loaded = 0;
+      const startIdx = svcPhotos[activeGalId].length;
+      files.forEach(file => {
+        const reader = new FileReader();
+        reader.onload = e => {
+          svcPhotos[activeGalId].push(e.target.result);
+          loaded++;
+          if (loaded === files.length) {
+            activeGalIdx = startIdx;
+            renderGal();
+            updateSvcCard(activeGalId);
+          }
+        };
+        reader.readAsDataURL(file);
+      });
+      input.value = '';
+    }
+
+    function updateSvcCard(svcId) {
+      const photos = svcPhotos[svcId] || [];
+      const bg = document.getElementById(`${svcId}-bg`);
+      if (!bg) return;
+      const img = bg.querySelector('.svc-preview-img');
+      const emoji = bg.querySelector('.svc-emoji');
+      const count = document.getElementById(`${svcId}-count`);
+      if (photos.length > 0) {
+        autoPosition(img);
+        img.src = photos[0];
+        img.style.display = 'block';
+        if (emoji) emoji.style.display = 'none';
+      }
+      if (count) {
+        count.textContent = `📷 ${photos.length}枚`;
+        count.style.display = 'inline-block';
+      }
+    }
+
+    // Escape key closes gallery
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeGallery();
+      if (e.key === 'ArrowLeft') galPrev();
+      if (e.key === 'ArrowRight') galNext();
+    });
+
+    function previewAvatarPhoto(input) {
+      if (!input.files || !input.files[0]) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const wrap = input.parentElement;
+        const img = wrap.querySelector('.avatar-preview-img');
+        img.src = e.target.result;
+        img.style.display = 'block';
+        const emoji = wrap.querySelector('.avatar-emoji');
+        if (emoji) emoji.style.display = 'none';
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
 
     // Scroll fade-in animation
     const observer = new IntersectionObserver((entries) => {
